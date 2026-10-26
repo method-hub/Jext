@@ -1,0 +1,3 @@
+{"type":"signup","user":1}
+{"type":"login","user":2}
+{"type":"logout","user":1}

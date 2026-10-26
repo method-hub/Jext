@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Fast test types only: browser and performance tests run in CI or by hand.
+npm run tests:guardian

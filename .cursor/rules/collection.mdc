@@ -1,0 +1,12 @@
+---
+description: Rules for the collection package
+globs: packages/collection/**
+alwaysApply: false
+---
+
+- Read `packages/collection/AGENTS.md` and `packages/collection/docs/en/ARCHITECTURE.md` first.
+- Steps in `when`/`unless`/`alt`/`cond`/`chain` receive the wrapper (ADR 0002); never mutate the value.
+- A new method: pure function in `src/<Type>/extensions/<name>.ts`, export it from `extensions/index.ts`, wrap it in
+  `<Type>Extensions`, add a unit test (steps in `packages/collection/AGENTS.md`).
+- If you change what a method returns or the class ladder, update the diagrams and the return table
+  in `docs/{en,ru}/ARCHITECTURE.md`.

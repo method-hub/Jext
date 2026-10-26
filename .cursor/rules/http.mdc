@@ -1,0 +1,9 @@
+---
+description: Rules for the http package
+globs: packages/http/**
+alwaysApply: false
+---
+
+- Read `packages/http/AGENTS.md` and `packages/http/docs/en/ARCHITECTURE.md` first.
+- Parser order in `Bootstrap` is the priority order; adding a parser follows the steps in `packages/http/AGENTS.md`.
+- Unit tests call parsers on a real `Response` without `fetch`; integration tests use a local `node:http` server.

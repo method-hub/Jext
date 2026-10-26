@@ -1,0 +1,23 @@
+{
+  "name": "jext-website",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Documentation site of Jext, built from the packages: VitePress pages and a TypeDoc API reference",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/collect.mjs --check",
+    "api": "typedoc --options typedoc.json",
+    "collect": "node scripts/collect.mjs",
+    "dev": "npm run api && npm run collect && vitepress dev",
+    "build": "npm run check && npm run api && npm run collect && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "mermaid": "^12.2.0",
+    "typedoc": "0.28.20",
+    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-vitepress-theme": "1.1.4",
+    "vitepress": "1.6.4",
+    "vitepress-plugin-mermaid": "2.0.17"
+  }
+}

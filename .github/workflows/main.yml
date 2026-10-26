@@ -1,0 +1,51 @@
+# Checks every push to main and every pull request: code style, types, all tests, the builds and what npm would publish.
+# How CI/CD fits together: .github/docs/en/RELEASING.md
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Prettier
+        run: npm run prettier
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Browsers for the browser tests
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Tests (unit, integration, feature, browser on Vitest)
+        run: npm run tests
+
+      - name: Package builds and the files npm would publish
+        run: npm run pack:dry

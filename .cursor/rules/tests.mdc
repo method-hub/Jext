@@ -1,0 +1,21 @@
+---
+description: Where tests go and which config runs them
+globs: tests/**, packages/*/tests/**, **/*.test.ts
+alwaysApply: false
+---
+
+- Unit: `packages/<pkg>/tests/Unit` only. Integration: `packages/<pkg>/tests/Integration`.
+  Feature and Browser: `packages/<pkg>/tests/<Type>` or the root `tests/<Type>` for cross-package scenarios.
+  Performance: `packages/<pkg>/tests/Performance/*.perf.test.ts`.
+- Every type runs on Vitest (ADR 0010): one project per type in the root `vitest.config.ts`
+  (`vitest run --project unit`), import from `'vitest'`. Do not add per-test configs. Browser tests have
+  `vitest.browser.config.ts` (Vitest + Playwright, requests to `/__test/echo`, ADR 0009).
+- Tests run in plain Node; a file that needs the DOM or XHR starts with `// @vitest-environment jsdom-with-fetch`.
+- A folder per subject, a file per scenario: `<Subject>/<Subject>.<method>.<case>.test.ts`.
+- Each dot in the file name opens a narrower scope (`Bootstrap.attachment.csv`); a hyphen only joins words of one
+  segment (`Http.send.connection-dropped`).
+- `describe('<Subject>.<method> should <result>')`, `it('when <condition>')`; negative cases for every subject.
+- Arrange-Act-Assert, self-contained files, explicit generic types: section Tests in `AGENTS.md`. Test types: ADR 0005.
+- Every change comes with tests: new behaviour gets new files; rewrite an old test only when its API changed.
+- A lesson test: `packages/<pkg>/tests/Feature/Examples/Examples.<subject>.<case>.test.ts`, named after the lesson
+  folder without its number, one `it.each` over the six variants against `createLessonServer` on port 0.

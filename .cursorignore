@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+build/
+out/
+
+# Logs and Cache
+*.log
+.npm/
+.eslintcache
+.vite/
+
+# Lock files (consume many tokens, rarely needed for logic)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Git
+.git/
+
+# Test coverage
+coverage/
+
+# Media and binary files
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.ico
+*.gif
+.github/logo/
+
+# Empty git files (noise)
+**/.gitkeep
+
+# IDE configuration
+.idea/
+.vscode/
+
+# Generated documentation site (website/: pages, API reference, build)
+website/.content/
+website/.vitepress/cache/
+website/.vitepress/dist/

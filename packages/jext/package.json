@@ -1,0 +1,55 @@
+{
+  "name": "@metapraxis/jext",
+  "version": "0.0.1",
+  "description": "Jext in one package: the collection and http packages together",
+  "keywords": [
+    "jext",
+    "http",
+    "collection",
+    "utilities",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "METHOD",
+    "url": "https://github.com/method-hub"
+  },
+  "homepage": "https://github.com/method-hub/Jext/tree/main/packages/jext#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/method-hub/Jext.git",
+    "directory": "packages/jext"
+  },
+  "bugs": {
+    "url": "https://github.com/method-hub/Jext/issues"
+  },
+  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build && vite build --mode umd",
+    "prepack": "node -e \"require('fs').copyFileSync('../../LICENSE', 'LICENSE')\""
+  },
+  "dependencies": {
+    "@metapraxis/jext-collection": "0.0.1",
+    "@metapraxis/jext-http": "0.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Alice Moreau", "email": "alice@example.com", "role": "admin" },
+  { "id": 2, "name": "Bob Tanaka", "email": "bob@example.com", "role": "editor" },
+  { "id": 3, "name": "Chloé Petrova", "email": "chloe@example.com", "role": "admin" },
+  { "id": 4, "name": "Dmitri Okafor", "email": "dmitri@example.com", "role": "viewer" }
+]

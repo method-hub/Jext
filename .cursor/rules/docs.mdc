@@ -1,0 +1,15 @@
+---
+description: Documentation rules
+globs: **/*.md
+alwaysApply: false
+---
+
+- Human-facing docs exist in two languages: `en/` and `ru/`. Change both in the same commit.
+- A change to an architectural concept updates the matching `ARCHITECTURE.md` in both languages (see `AGENTS.md`).
+- Diagrams are Mermaid code blocks, not images. Labels inside diagrams use code names, so both languages share them.
+- Agent files (`AGENTS.md`, `.cursor/rules/`, ADRs) are English only.
+- The documentation site in `website/` is generated from `README.md`, `RUADME.md`, `docs/` and `adr/` of each package
+  and from `.github/docs/`. Edit the sources, never `website/.content/`. Link docs with relative file paths; a dead
+  link fails `npm run docs:build`. `RUADME.md` is the deliberate name of the Russian readme: never rename it.
+- Lessons in `packages/<pkg>/examples/NN.<subject>.<case>/` have six variants and `en.md` + `ru.md` with the line
+  `<!-- @variants -->`; a change to a public method updates the lessons that use it. See `AGENTS.md` › Documentation.

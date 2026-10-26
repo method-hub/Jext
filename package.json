@@ -1,0 +1,82 @@
+{
+  "name": "jext-monorepo",
+  "description": "A modern, fast, and feature-rich JavaScript library designed to simplify complex tasks",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "website"
+  ],
+  "author": {
+    "name": "METHOD",
+    "url": "https://github.com/method-hub"
+  },
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "eslint packages",
+    "lint:fix": "eslint packages --fix",
+    "prettier": "prettier --check \"packages/**/*.ts\"",
+    "prettier:fix": "prettier --write \"packages/**/*.ts\"",
+    "tests": "npm-run-all --parallel tests:guardian tests:browser",
+    "tests:guardian": "vitest run --project unit --project integration --project feature",
+    "tests:unit": "vitest run --project unit",
+    "tests:integration": "vitest run --project integration",
+    "tests:feature": "vitest run --project feature",
+    "tests:browser": "npm run packages:build && vitest run --config vitest.browser.config.ts",
+    "tests:performance": "vitest run --project performance",
+    "tests:http": "npm run tests:guardian -- packages/http/",
+    "tests:collection": "npm run tests:guardian -- packages/collection/",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "docs:dev": "npm run dev -w jext-website",
+    "docs:build": "npm run build -w jext-website",
+    "docs:preview": "npm run preview -w jext-website",
+    "docs:check": "npm run check -w jext-website",
+    "docs:api": "npm run api -w jext-website",
+    "docs:collect": "npm run collect -w jext-website",
+    "packages:build": "npm run build -w @metapraxis/jext-http -w @metapraxis/jext-collection && npm run build -w @metapraxis/jext",
+    "pack:dry": "npm run packages:build && npm pack --dry-run -w @metapraxis/jext-http -w @metapraxis/jext-collection -w @metapraxis/jext",
+    "publish:dry": "npm run packages:build && npm publish --dry-run -w @metapraxis/jext-http -w @metapraxis/jext-collection -w @metapraxis/jext",
+    "changeset": "changeset",
+    "release:status": "changeset status --verbose",
+    "release:version": "changeset version && npm install --package-lock-only",
+    "release": "npm run packages:build && changeset publish",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "packages/**/*.ts": [
+      "eslint --cache --fix --no-warn-ignored",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "3.0.3",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@eslint/js": "9.26.0",
+    "@typescript-eslint/eslint-plugin": "8.38.0",
+    "@typescript-eslint/parser": "8.38.0",
+    "@vitest/browser-playwright": "5.0.4",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsdoc": "63.3.3",
+    "husky": "9.1.7",
+    "jsdom": "26.1.0",
+    "lint-staged": "16.1.2",
+    "npm-run-all": "4.1.5",
+    "playwright": "1.63.0",
+    "prettier": "3.6.2",
+    "terser": "5.43.1",
+    "typescript": "5.5.4",
+    "vite": "8.3.3",
+    "vite-plugin-dts": "4.5.4",
+    "vitest": "5.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/method-hub/Jext.git"
+  }
+}

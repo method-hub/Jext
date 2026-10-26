@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book id="1">
+        <title>Patterns of Enterprise Application Architecture</title>
+        <year>2002</year>
+    </book>
+    <book id="2">
+        <title>Designing Data-Intensive Applications</title>
+        <year>2017</year>
+    </book>
+</catalog>

@@ -1,0 +1,62 @@
+{
+  "name": "@metapraxis/jext-collection",
+  "version": "0.0.1",
+  "description": "Typed chainable wrappers for arrays, strings, numbers, objects, sets and maps",
+  "keywords": [
+    "collection",
+    "array",
+    "string",
+    "object",
+    "chain",
+    "utilities",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "METHOD",
+    "url": "https://github.com/method-hub"
+  },
+  "homepage": "https://github.com/method-hub/Jext/tree/main/packages/collection#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/method-hub/Jext.git",
+    "directory": "packages/collection"
+  },
+  "bugs": {
+    "url": "https://github.com/method-hub/Jext/issues"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build && vite build --mode umd",
+    "test": "cd ../.. && npm run tests:collection",
+    "prepack": "node -e \"require('fs').copyFileSync('../../LICENSE', 'LICENSE')\""
+  },
+  "devDependencies": {
+    "@types/lodash": "4.17.27",
+    "@types/ramda": "0.32.0",
+    "es-toolkit": "1.53.0",
+    "lodash": "4.18.1",
+    "ramda": "0.32.0",
+    "remeda": "2.53.0",
+    "tinybench": "2.9.0"
+  }
+}

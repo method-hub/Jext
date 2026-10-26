@@ -1,0 +1,29 @@
+name: Feature request
+description: A new method, option or behaviour
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - collection
+        - http
+        - jext
+        - docs
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What you are trying to do and why the current API makes it hard.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How the API could look.
+      render: ts

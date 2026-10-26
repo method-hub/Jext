@@ -1,0 +1,12 @@
+---
+description: TypeScript conventions for package sources
+globs: packages/**/*.ts
+alwaysApply: false
+---
+
+- Import inside a package through `@Collection/*` / `@Http/*`, not long relative paths.
+- One class per file, default export, file named after the class.
+- JSDoc on every class, interface and method: `@summary`, `@param`, `@returns`, no types in braces; `@example`
+  on the public API (what `index.ts` exports). Full rules: root `AGENTS.md` › Code conventions.
+- Never mutate the wrapped value: copy (`[...this.value]`) and return a new instance.
+- ESLint limits: max 35 lines per function, max 3 params, max depth 2, no nested ternaries.

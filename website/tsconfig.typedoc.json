@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../packages",
+    "emitDeclarationOnly": false,
+    "noEmit": true
+  },
+  "include": ["../packages/http/index.ts", "../packages/http/src"]
+}

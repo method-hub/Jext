@@ -1,0 +1,66 @@
+{
+  "name": "@metapraxis/jext-http",
+  "version": "0.0.1",
+  "description": "HTTP client that returns the response already parsed by Content-Type: JSON, XML, HTML, forms, CSV, NDJSON, Server-Sent Events, media",
+  "keywords": [
+    "http",
+    "fetch",
+    "client",
+    "sse",
+    "xml",
+    "csv",
+    "ndjson",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "METHOD",
+    "url": "https://github.com/method-hub"
+  },
+  "homepage": "https://github.com/method-hub/Jext/tree/main/packages/http#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/method-hub/Jext.git",
+    "directory": "packages/http"
+  },
+  "bugs": {
+    "url": "https://github.com/method-hub/Jext/issues"
+  },
+  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build && vite build --mode umd",
+    "test": "cd ../.. && npm run tests:http",
+    "examples:serve": "node examples/serve.mjs",
+    "prepack": "node -e \"require('fs').copyFileSync('../../LICENSE', 'LICENSE')\""
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.2"
+  },
+  "devDependencies": {
+    "axios": "1.20.0",
+    "ky": "2.2.0",
+    "ofetch": "1.5.1",
+    "valibot": "1.5.0",
+    "zod": "^4.6.7"
+  }
+}

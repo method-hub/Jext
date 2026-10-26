@@ -1,0 +1,24 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Конфигурационные файлы: два пробела
+[**/*.config.{js,ts,cjs,mjs}]
+indent_size = 2
+
+[.*rc*]
+indent_size = 2
+
+# (опционально) Часто конфиги в JSON/YAML тоже на 2 пробела
+[*.{json,yml,yaml}]
+indent_size = 2
+
+# (опционально) В Markdown обычно не режут хвостовые пробелы
+[*.md]
+trim_trailing_whitespace = false

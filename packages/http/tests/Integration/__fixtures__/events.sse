@@ -1,0 +1,13 @@
+: stream opened
+
+event: progress
+id: 1
+data: {"percent":50}
+
+event: progress
+id: 2
+data: {"percent":100}
+
+data: done
+data: bye
+

@@ -1,0 +1,67 @@
+# Releases the packages with Changesets (ADR 0008). On every push to main:
+# - pending files in .changeset/ → opens or updates the pull request "chore(main): release packages", which bumps
+#   the versions and writes the CHANGELOGs;
+# - no pending files (that pull request was merged) → publishes to npm every package whose version is not there yet,
+#   with provenance, and creates a git tag and a GitHub release for it.
+# Step by step: .github/docs/en/RELEASING.md
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+
+jobs:
+  release:
+    # Runs only in the main repository: forks and copies never publish
+    if: github.repository == 'method-hub/Jext'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Without the NPM_TOKEN secret the release pull request still works, publishing is skipped
+      - name: Check the npm token
+        id: npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "publish=npm run release" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::The NPM_TOKEN secret is not set: nothing is published to npm"
+          fi
+
+      - name: Release pull request or publish
+        uses: changesets/action@v1
+        with:
+          version: npm run release:version
+          publish: ${{ steps.npm.outputs.publish }}
+          title: 'chore(main): release packages'
+          commit: 'chore(main): release packages'
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: 'true'

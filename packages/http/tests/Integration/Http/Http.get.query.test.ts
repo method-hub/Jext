@@ -1,0 +1,51 @@
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { createServer, type Server } from 'node:http';
+import type { AddressInfo } from 'node:net';
+import Bootstrap from '@Http/Bootstrap';
+
+interface Echo {
+    method: string;
+    url: string;
+    contentType: string | null;
+    body: string;
+}
+
+/**
+ * The server answers every request with what it received, so the test sees the request as it went over the wire.
+ */
+describe('Http.get should send the query to a local server', () => {
+    let server: Server;
+    let url: string;
+
+    beforeAll(async () => {
+        server = createServer((request, response) => {
+            const chunks: Buffer[] = [];
+            request.on('data', (chunk: Buffer) => chunks.push(chunk));
+            request.on('end', () => {
+                const echo: Echo = {
+                    method: request.method ?? '',
+                    url: request.url ?? '',
+                    contentType: request.headers['content-type'] ?? null,
+                    body: Buffer.concat(chunks).toString(),
+                };
+                response.writeHead(200, { 'Content-Type': 'application/json' }).end(JSON.stringify(echo));
+            });
+        });
+
+        await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
+        url = `http://127.0.0.1:${(server.address() as AddressInfo).port}/users`;
+    });
+
+    afterAll(async () => {
+        server.closeAllConnections();
+        await new Promise((resolve) => server.close(resolve));
+    });
+
+    it('when query parameters are chained', async () => {
+        const http = new Bootstrap().init();
+
+        const { data } = await http.get<Echo>(url).query({ page: 2, tags: ['a', 'b'], q: 'a&b' });
+
+        expect(data?.url).toBe('/users?page=2&tags=a&tags=b&q=a%26b');
+    });
+});

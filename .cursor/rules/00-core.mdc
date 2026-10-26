@@ -1,0 +1,10 @@
+---
+description: Core rules for every Jext task
+alwaysApply: true
+---
+
+- `AGENTS.md` in the repository root is the source of truth. Read it before the first change; do not copy its
+  content into Cursor rules.
+- Package specifics: `packages/<pkg>/AGENTS.md` and `packages/<pkg>/docs/en/ARCHITECTURE.md`.
+- Answer the user in the language they write in. Code, comments, commit messages and agent files are English.
+- Do not add runtime dependencies without an ADR.

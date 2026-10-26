@@ -1,0 +1,2 @@
+# Fixtures are served byte for byte: keep CRLF line endings and binary files as they are.
+* -text

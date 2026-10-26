@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book>
+        <title>Dune</title>
+        <year>1965</year>
+    </book>
+    <book>
+        <title>Solaris</title>
+        <year>1961</year>
+    </book>
+</catalog>

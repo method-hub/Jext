@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "../packages",
     "emitDeclarationOnly": false,
-    "noEmit": true
+    "noEmit": true,
+    "rootDir": "../..",
+    "ignoreDeprecations": "6.0"
   },
   "include": ["../packages/http/index.ts", "../packages/http/src"]
 }

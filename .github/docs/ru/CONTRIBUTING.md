@@ -44,17 +44,14 @@
 Готовы внести изменения в код? Отлично! Вот как подготовить рабочее окружение. Понадобятся Node.js 22 или новее и
 npm 10 или новее.
 
-**1. Клонируйте репозиторий**
+**1. Сделайте форк и клонируйте репозиторий**
+
+Сначала сделайте форк [`method-hub/Jext`](https://github.com/method-hub/Jext) на GitHub, затем клонируйте свой форк и добавьте `upstream`, чтобы отправлять ветки в `origin` и синхронизировать `main` с основным репозиторием:
 
 ```bash
-git clone https://github.com/method-hub/Jext.git
+git clone https://github.com/<ваш-никнейм>/Jext.git
 cd Jext
-```
-
-Если у вас нет прав на запись в `method-hub/Jext`, сначала сделайте форк на GitHub и отправляйте ветку в него:
-
-```bash
-git remote add fork https://github.com/<ваш-никнейм>/Jext.git
+git remote add upstream https://github.com/method-hub/Jext.git
 ```
 
 **2. Установите зависимости**

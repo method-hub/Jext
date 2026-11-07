@@ -42,17 +42,14 @@ There are many ways to contribute:
 Ready to make code changes? Great! Here's how to set up your environment. You need Node.js 22 or newer and npm 10
 or newer.
 
-**1. Clone the Repository**
+**1. Fork and Clone the Repository**
+
+Fork [`method-hub/Jext`](https://github.com/method-hub/Jext) on GitHub first, then clone your fork and add the upstream remote so you can push branches to `origin` and keep `main` in sync with `upstream`:
 
 ```bash
-git clone https://github.com/method-hub/Jext.git
+git clone https://github.com/<your-username>/Jext.git
 cd Jext
-```
-
-If you have no write access to `method-hub/Jext`, fork it on GitHub first and push your branch to the fork:
-
-```bash
-git remote add fork https://github.com/<your-username>/Jext.git
+git remote add upstream https://github.com/method-hub/Jext.git
 ```
 
 **2. Install Dependencies**

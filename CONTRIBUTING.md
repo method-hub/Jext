@@ -11,11 +11,12 @@ performance tests and side-by-side lessons. Write code that is fast and elegant 
 
 ## Quick start
 
-You need Node.js 22+ and npm 10+.
+You need Node.js 22+ and npm 10+. Fork `method-hub/Jext` on GitHub first, then clone your fork and add `upstream`:
 
 ```bash
-git clone https://github.com/method-hub/Jext.git
+git clone https://github.com/<your-username>/Jext.git
 cd Jext
+git remote add upstream https://github.com/method-hub/Jext.git
 npm ci
 npm run tests:guardian
 ```
